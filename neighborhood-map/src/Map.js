@@ -1,58 +1,29 @@
 import React, { Component } from 'react';
 import scriptLoader from 'react-async-script-loader';
 
+import './App.css';
 
-@scriptLoader([`https://maps.googleapis.com/maps/api/js?key=AIzaSyAcGzKXNeOcVTjtGJ3mezaCbmfq3MAA3_c`])
+
 class Map extends Component {
-  constructor(props) {
-    super(props);
-    this.map= null;
-  }
 
-  componentWillReceiveProps ({ isScriptLoaded, isScriptLoadSucceed }) {
-    if (isScriptLoaded && !this.props.isScriptLoaded) {
-      //Make sure load is finished
-      if (isScriptLoadSucceed) {
-        this.map = new google.maps.Map(this.refs.map, {
-          center: {lat: 38.7091572, lng: -90.3872404},
-          zoom: 13
-        });
+  componentWillReceiveProps ({isScriptLoadSucceed }) {
+    if (isScriptLoadSucceed) {
+      let markers = [];
 
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition((position) => {
-            const pos = {
-              lat: potision.coords.latitude,
-              lng: potision.coords.longitude
-            };
-
-            this.map.setCenter(pos);
-
-            const marker = new google.maps.Marker({
-              position: pos,
-              map: this.map,
-              title: 'First Try!'
-            });
-
-          }, () => {
-            console.log('Nav Disabled');
-          });
-        } else {
-          //Browser doesn't support GeoLoc
-          console.log('Nav Disabled');
-        }
-      }
-      else this.props.onError()
+      const map = new window.google.maps.Map(document.getElementById('map'), {
+        center: {lat: 38.7091572, lng: -90.3872404},
+        zoom: 13
+      });
+    } else {
+      alert('No Script Loaded')
     }
   }
-
-
 
   render() {
 
     return (
-      <div>
-        <div ref="map" style={{height: '90%', width:'100%'}}></div>
-        { !this.map && <div>Loading...</div> }
+      <div classID="mapContainer">
+        <div id='map'></div>
       </div>
     );
 
@@ -60,4 +31,7 @@ class Map extends Component {
 
 }
 
-export default Map;
+  //ScriptLoader used to Async load Google Maps API
+export default scriptLoader(
+  [`https://maps.googleapis.com/maps/api/js?key=AIzaSyAcGzKXNeOcVTjtGJ3mezaCbmfq3MAA3_c&v=3`]
+) (Map)
