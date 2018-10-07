@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import scriptLoader from 'react-async-script-loader';
 
-import './App.css';
-
 
 class Map extends Component {
 
-  componentWillReceiveProps ({isScriptLoadSucceed }) {
+  componentWillReceiveProps ({ isScriptLoadSucceed }) {
     if (isScriptLoadSucceed) {
       let markers = [];
 
@@ -14,6 +12,21 @@ class Map extends Component {
         center: {lat: 38.7091572, lng: -90.3872404},
         zoom: 13
       });
+
+      let newPoint = {lat: 38.7048806, lng:-90.355353};
+      let marker = new window.google.maps.Marker({
+        position: newPoint,
+        map: map,
+        title: 'NumberOne'
+      });
+
+      let infoWindow = new window.google.maps.InfoWindow({
+        content: `I am telling you the INFO`
+      });
+      marker.addListener("click", () => {
+        infoWindow.open(map, marker);
+      });
+
     } else {
       alert('No Script Loaded')
     }
