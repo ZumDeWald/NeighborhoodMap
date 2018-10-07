@@ -9,17 +9,40 @@ class Map extends Component {
     this.map= null;
   }
 
+  componentWillReceiveProps ({ isScriptLoaded, isScriptLoadSucceed }) {
+    if (isScriptLoaded && !this.props.isScriptLoaded) {
+      //Make sure load is finished
+      if (isScriptLoadSucceed) {
+        this.map = new google.maps.Map(this.refs.map, {
+          center: {lat: 38.7091572, lng: -90.3872404},
+          zoom: 13
+        });
 
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition((position) => {
+            const pos = {
+              lat: potision.coords.latitude,
+              lng: potision.coords.longitude
+            };
 
-  map = null;
+            this.map.setCenter(pos);
 
-  loadGoogleMapsAPI
+            const marker = new google.maps.Marker({
+              position: pos,
+              map: this.map,
+              title: 'First Try!'
+            });
 
-  initMap() {
-    this.map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: 40.7413549, lng:-73.9980244},
-      zoom: 13
-    });
+          }, () => {
+            console.log('Nav Disabled');
+          });
+        } else {
+          //Browser doesn't support GeoLoc
+          console.log('Nav Disabled');
+        }
+      }
+      else this.props.onError()
+    }
   }
 
 
@@ -27,8 +50,9 @@ class Map extends Component {
   render() {
 
     return (
-      <div className="App">
-        <div id="map"></div>
+      <div>
+        <div ref="map" style={{height: '90%', width:'100%'}}></div>
+        { !this.map && <div>Loading...</div> }
       </div>
     );
 
