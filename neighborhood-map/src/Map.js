@@ -6,12 +6,19 @@ class Map extends Component {
 
   componentWillReceiveProps ({ isScriptLoadSucceed }) {
     if (isScriptLoadSucceed) {
-      let markers = [];
 
       const map = new window.google.maps.Map(document.getElementById('map'), {
         center: {lat: 38.7091572, lng: -90.3872404},
         zoom: 13
       });
+
+      const locations = [
+        {title: 'location1', location:{lat: 34.6446582, lng: -97.930316}},
+        {title: 'location2', location:{lat: 34.6505821, lng: -97.9580572}},
+        {title: 'location3', location:{lat: 34.6454464, lng: -97.9676083}},
+        {title: 'location4', location:{lat: 34.6466411, lng: -97.9536852}},
+        {title: 'location5', location:{lat: 34.6667351, lng: -97.9548392}},
+      ]
 
       let newPoint = {lat: 38.7048806, lng:-90.355353};
       let marker = new window.google.maps.Marker({
