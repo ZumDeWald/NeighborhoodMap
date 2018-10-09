@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import scriptLoader from 'react-async-script-loader';
+import InfoWindow from './InfoWindow';
 
 
 class Map extends Component {
@@ -22,7 +23,10 @@ class Map extends Component {
         {title: 'Church of the Holy Sepulchre', location:{lat: 31.7784858, lng: 35.2274115}},
       ]
 
-      let infoWindow = new window.google.maps.InfoWindow({
+      //store InfoWindow Component for use later
+      const InfoWindowComp = <InfoWindow />;
+
+      const infoWindow = new window.google.maps.InfoWindow({
         content: null
       });
 
@@ -59,47 +63,20 @@ class Map extends Component {
       //fit map to bounds of all markers
       map.fitBounds(bounds);
 
+
       function populateInfoWindow(marker, infowindow) {
         //make sure infoWindow not already open
         if (infowindow.marker !== marker) {
           infowindow.marker = marker;
-          infowindow.setContent(``);
+          infowindow.setContent(toString(InfoWindowComp));
+          infowindow.open(map, marker);
 
           //make sure marker is cleared if infowindow is closed
           infowindow.addListener('closeclick', function() {
-            infowindow.marker = null;
+            infowindow.setContent(null);
             marker.setAnimation(null);
           });
-
-          //Set street views
-          let streetView = new window.google.maps.StreetViewService();
-          let radius = 50;
-
-          //check for panorama, set to nearest if none available
-          function getStreetView(data, status) {
-            if (status === window.google.maps.StreetViewStatus.OK) {
-              let nearStreetViewLoc = data.location.latLng;
-              let heading = window.google.maps.geometry.spherical.computeHeading(
-                nearStreetViewLoc, marker.position);
-                infoWindow.setContent(`<div>${marker.title}</div><div id="pano"></div>`);
-                let panoramaOptions = {
-                  position: nearStreetViewLoc,
-                  pov: {
-                    heading: heading,
-                    pitch: 30
-                  }
-                };
-                let panorama = new window.google.maps.StreetViewPanorama(
-                  document.getElementById("pano"), panoramaOptions);
-            } else {
-              infoWindow.setContent(`<div>${marker.title}</div><div>No Street View Available</div>`);
-            }
-          }
-          //Use Streetview Service to get closest Streetview available
-          streetView.getPanoramaByLocation(marker.position, radius, getStreetView);
-          //Open infoWindow
-          infoWindow.open(map, marker);
-        }
+        };
       }
 
     } else {
@@ -122,5 +99,5 @@ class Map extends Component {
 
   //ScriptLoader used to Async load Google Maps API
 export default scriptLoader(
-  [`https://maps.googleapis.com/maps/api/js?libraries=geometry&key=AIzaSyAcGzKXNeOcVTjtGJ3mezaCbmfq3MAA3_c&v=3`]
+  [`https://maps.googleapis.com/maps/api/js?key=AIzaSyAcGzKXNeOcVTjtGJ3mezaCbmfq3MAA3_c&v=3`]
 ) (Map)
