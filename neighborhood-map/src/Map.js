@@ -23,9 +23,6 @@ class Map extends Component {
         {title: 'Church of the Holy Sepulchre', location:{lat: 31.7784858, lng: 35.2274115}},
       ]
 
-      //store InfoWindow Component for use later
-      const InfoWindowComp = <InfoWindow />;
-
       const infoWindow = new window.google.maps.InfoWindow({
         content: null
       });
@@ -65,10 +62,12 @@ class Map extends Component {
 
 
       function populateInfoWindow(marker, infowindow) {
+        //store InfoWindow Component for use later
+        const InfoWindowComp = <InfoWindow />;
         //make sure infoWindow not already open
         if (infowindow.marker !== marker) {
           infowindow.marker = marker;
-          infowindow.setContent(toString(InfoWindowComp));
+          infowindow.setContent(`<div>Hello</div>`);
           infowindow.open(map, marker);
 
           //make sure marker is cleared if infowindow is closed
