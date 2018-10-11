@@ -24,10 +24,11 @@ class Map extends Component {
       script.id = 'GoogleAPIScript';
       script.type = 'text/javascript';
       script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAcGzKXNeOcVTjtGJ3mezaCbmfq3MAA3_c&v=3`;
-      let grabScript = document.getElementById('GoogleAPIScript');
-      grabScript.parentNode.insertBefore(script, grabScript);
+      //Place our API call script on top of others
+      let grabFirstScript = document.getElementsByTagName('script')[0];
+      grabFirstScript.parentNode.insertBefore(script, grabFirstScript);
 
-      //Event Listener to instantiate map AFTER Async call returns
+      //Event Listener to instantiate map after Async call returns
       script.addEventListener('load', e => {
         this.onScriptLoad()
       })
