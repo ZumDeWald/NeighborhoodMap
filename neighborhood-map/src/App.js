@@ -18,7 +18,7 @@ class App extends Component {
   }
 
   createInfoWindow(e, map) {
-    //save title to pass to InfoWindow component
+    //save title and ID to pass to InfoWindow component
     let currentTitle = e.title;
     let currentID = e.id;
 
@@ -39,7 +39,9 @@ class App extends Component {
     infoWindow.open(map)
   }
 
+
   render() {
+
     let markers = [];
     const locations = this.state.locations;
 
@@ -50,8 +52,12 @@ class App extends Component {
           center: { lat:31.7053996 ,lng:35.1936877 },
           zoom: 13
         }}
+
+      //On creating a map instance, add markers/infoWindows
+      //This setup allows for multiple Maps to be loaded
+      //independently inside the same main App if desired
         onMapLoad={ map => {
-          //create bounds instance
+          //Create bounds instance
           const bounds = new window.google.maps.LatLngBounds();
 
           //Loop over state and create marker info for each
