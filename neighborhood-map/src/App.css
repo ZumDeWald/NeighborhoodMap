@@ -33,6 +33,15 @@
   width: 100px;
 }
 
+.list-title {
+  padding: 20px;
+}
+
+.list-title:hover {
+  background-color: #fff;
+  cursor: pointer;
+}
+
 #main-map {
   position: absolute;
   top: 3em;
