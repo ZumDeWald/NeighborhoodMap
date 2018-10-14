@@ -2,7 +2,7 @@ import React from 'react';
 
 function InfoWindow(props) {
   return(
-  <div className="info-window">It Works!!</div>
+  <div className="info-window">{props.title}</div>
   )
 }
 
