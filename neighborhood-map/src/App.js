@@ -8,7 +8,7 @@ import './App.css';
 class App extends Component {
 
   state = {
-    markers: [
+    locations: [
       {title: 'Bethlehem', location:{lat: 31.7053996, lng: 35.1936877}},
       {title: 'Nazareth', location:{lat: 32.6996454, lng: 35.2908666}},
       {title: 'Capernaum', location:{lat: 32.8803473, lng: 35.5645522}},
@@ -42,8 +42,6 @@ class App extends Component {
   }
 
   render() {
-    const markerList = this.state.markers;
-    const componentTHIS = this;
     return (
       <Map
         id='main-map'
@@ -52,10 +50,7 @@ class App extends Component {
           zoom: 13
         }}
         onMapLoad={ map => {
-          markerList.forEach( function(currentMarker) {
-                componentTHIS.createMarker(currentMarker, map)
-            }
-          )
+
         }}
       />
     );
