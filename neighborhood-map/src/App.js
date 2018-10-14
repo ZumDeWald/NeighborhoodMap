@@ -51,6 +51,12 @@ class App extends Component {
           zoom: 13
         }}
         onMapLoad={ map => {
+          //create bounds instance
+          const bounds = new window.google.maps.LatLngBounds();
+
+          //Loop over state and create marker info for each
+          //location and push into new array
+          //Then add listener for each individual marker
           locations.forEach((place, index) => {
             let position = place.location;
             let title = place.title;
@@ -61,11 +67,16 @@ class App extends Component {
               animation: window.google.maps.Animation.DROP,
               id: index
             });
+            //Add marker to new array
             markers.push(marker);
+            //Extend boundry of map to incorporate each marker
+            bounds.extend(marker.position);
             marker.addListener('click', () => {
               this.createInfoWindow(marker, map);
             });
           });
+          //Fit map to extended bounds
+          map.fitBounds(bounds);
         }}
       />
     );
