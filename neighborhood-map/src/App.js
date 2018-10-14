@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import Map from './Map';
 import InfoWindow from './InfoWindow';
 
@@ -12,7 +13,7 @@ class App extends Component {
       position: { lat: (e.latLng.lat() + 0.001), lng: e.latLng.lng()}
     })
     infoWindow.addListener('domready', e => {
-      this.render(<InfoWindow />, document.getElementById('infoWindow'))
+      ReactDOM.render(<InfoWindow />, document.getElementById('infoWindow'))
     })
     infoWindow.open(map)
   }
