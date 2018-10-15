@@ -10,11 +10,16 @@ class App extends Component {
 
   state = {
     locations: [
-      {title: 'Bethlehem', location:{lat: 31.705791, lng: 35.200657}},
-      {title: 'Nazareth', location:{lat: 32.6996, lng: 35.3035}},
-      {title: 'Capernaum', location:{lat: 32.8803, lng: 35.5733}},
-      {title: 'Gesthsemane', location:{lat: 31.779402, lng: 35.240197}},
-      {title: 'Church of the Holy Sepulchre', location:{lat: 31.7784013, lng: 35.2295513}}
+      {title: `Blueprint`,
+        location:{lat: 38.6556835, lng: -90.3027671}},
+      {title: `Original Kaldi's`,
+      location:{lat: 38.6386208, lng: -90.3097823}},
+      {title: `Hartford`,
+        location:{lat: 38.6027692, lng: -90.2545727}},
+      {title: `Mud House`,
+        location:{lat: 38.59302865, lng: -90.22218699999999}},
+      {title: `Sump`,
+        location:{lat: 38.5877544, lng: -90.2283778}}
     ],
   }
 
@@ -35,7 +40,7 @@ class App extends Component {
 
   showAllLocations = () => {
     this.setMapOnAll(window.mainMap);
-    window.mainMap.panToBounds(this.bounds, 150);
+    window.mainMap.fitBounds(this.bounds);
   }
 
     //On creating a map instance, add markers/infoWindows
