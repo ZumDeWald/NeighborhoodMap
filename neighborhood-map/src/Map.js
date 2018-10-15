@@ -3,18 +3,20 @@ import React, { Component } from 'react';
 
 
 class Map extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.onScriptLoad = this.onScriptLoad.bind(this)
-  // }
+  constructor(props) {
+    super(props);
+    this.onScriptLoad = this.onScriptLoad.bind(this)
+  }
 
-  //Once script load store new Google Map instance in const map
-  // onScriptLoad() {
-  //   const map = new window.google.maps.Map(
-  //     document.getElementById(this.props.id),
-  //     this.props.options);
-  //   this.props.onMapLoad(map);
-  // }
+  // Once script load store new Google Map instance in const map
+  onScriptLoad() {
+    const map = new window.google.maps.Map(
+      document.getElementById(this.props.id),
+      this.props.options);
+    //set map to window obj to get global access
+    window.mainMap = map;
+    this.props.onMapLoad(map);
+  }
 
   componentDidMount() {
     //Check if script loading Google Maps API is already loaded
@@ -29,10 +31,10 @@ class Map extends Component {
       grabFirstScript.parentNode.insertBefore(script, grabFirstScript);
       //Event Listener to instantiate map after Async call returns
       script.addEventListener('load', e => {
-        this.props.onScriptLoad()
+        this.onScriptLoad()
       })
     } else {
-      this.props.onScriptLoad()
+      this.onScriptLoad()
     }
   }
 

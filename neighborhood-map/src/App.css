@@ -30,7 +30,7 @@
 #drop-list {
   position: absolute;
   height: 200px;
-  width: 100px;
+  width: 100%;
 }
 
 .list-title {
@@ -40,6 +40,11 @@
 .list-title:hover {
   background-color: #fff;
   cursor: pointer;
+}
+
+.see-all {
+  color: #fff;
+  font-size: 15px;
 }
 
 #main-map {

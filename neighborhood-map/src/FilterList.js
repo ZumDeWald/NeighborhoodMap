@@ -11,15 +11,18 @@ function FilterList(props) {
   return(
     //Empty div to be populated by props passed down
   <div id="filter-list">
-    <button className="drop-button">Filter</button>
     <div id="drop-list" className="list-style">
       {props.locations.map((location, index) => (
         <span key={index + 100}
               id="location.title"
               className="list-title"
-              onClick={() => props.onFilterLocations(location)}
+              onClick={() => props.onCenterLocation(location)}
               >{location.title}</span>
       ))}
+      <span className="list-title"
+            onClick={() => props.showAllLocations()}>
+        See All
+      </span>
     </div>
   </div>
   )
