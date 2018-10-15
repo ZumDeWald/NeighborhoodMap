@@ -14,9 +14,9 @@ function FilterList(props) {
     <div id="drop-list" className="list-style">
       {props.locations.map((location, index) => (
         <span key={index + 100}
-              id="location.title"
+              id="index"
               className="list-title"
-              onClick={() => props.onCenterLocation(location)}
+              onClick={() => props.onFilterMarker(location, index)}
               >{location.title}</span>
       ))}
       <span className="list-title"

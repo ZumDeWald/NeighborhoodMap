@@ -16,35 +16,28 @@ class App extends Component {
       {title: 'Gesthsemane', location:{lat: 31.779402, lng: 35.240197}},
       {title: 'Church of the Holy Sepulchre', location:{lat: 31.7784013, lng: 35.2295513}}
     ],
-    showLocations: [
-      {title: 'Bethlehem', location:{lat: 31.705791, lng: 35.200657}},
-      {title: 'Nazareth', location:{lat: 32.6996, lng: 35.3035}},
-      {title: 'Capernaum', location:{lat: 32.8803, lng: 35.5733}},
-      {title: 'Gesthsemane', location:{lat: 31.779402, lng: 35.240197}},
-      {title: 'Church of the Holy Sepulchre', location:{lat: 31.7784013, lng: 35.2295513}}
-    ]
   }
 
   bounds = null;
+  markers=[];
+
+  setMapOnAll = (map) => {
+    this.markers.forEach((marker) => {
+      marker.setMap(map);
+    })
+  }
 
 
-  centerLocation = (point) => {
-    window.mainMap.setZoom(12)
-    window.mainMap.panTo(point.location);
+  filterMarker = (point, index) => {
+    this.setMapOnAll(null);
+    this.markers[index].setMap(window.mainMap);
+    window.mainMap.panTo(this.markers[index].position);
   }
 
   showAllLocations = () => {
-    window.mainMap.fitBounds(this.bounds);
+    this.setMapOnAll(window.mainMap);
+    window.mainMap.panToBounds(this.bounds, 150);
   }
-
-  //
-  // onScriptLoad(mapID, options) {
-  //   const map = new window.google.maps.Map(
-  //     document.getElementById(mapID),
-  //     options);
-  //     this.mapLoad(map);
-  // }
-
 
     //On creating a map instance, add markers/infoWindows
   mapLoad = (map) => {
@@ -52,7 +45,7 @@ class App extends Component {
     this.bounds = new window.google.maps.LatLngBounds();
     //Loop over state and create marker info for each location
     //Then add listener for each individual marker
-    this.state.showLocations.forEach((place, index) => {
+    this.state.locations.forEach((place, index) => {
       let position = place.location;
       let title = place.title;
       let marker = new window.google.maps.Marker({
@@ -68,6 +61,7 @@ class App extends Component {
       marker.addListener('click', () => {
         this.createInfoWindow(marker, map);
       });
+      this.markers.push(marker);
     });
     //Fit map to extended bounds
     map.fitBounds(this.bounds);
@@ -100,7 +94,7 @@ class App extends Component {
       <div id="map-container">
         <FilterList
           locations={this.state.locations}
-          onCenterLocation={this.centerLocation}
+          onFilterMarker={this.filterMarker}
           showAllLocations={this.showAllLocations}
          />
         <Map
