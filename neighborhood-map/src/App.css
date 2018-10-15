@@ -10,72 +10,42 @@
 #filter-bar {
   display: flex;
   flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  height: 100px;
-}
-
-.drop-button {
-  width: 80%;
-  background-color: blue;
-  color: #000;
-  font-size: 12px;
-  cursor: pointer;
-}
-
-.drop-button:hover,
-.drop-button:focus {
-  background-color: green;
-}
-
-#drop-list {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  height: 300px;
-  width: 100px;
-  list-style: none;
+  height: 4em;
+  border-bottom: solid 0.2em #302F2F;
+  box-shadow: 1px 1px 7px #7B7A7A;
   z-index: 1;
 }
 
-#list-title {
-  width: 50px;
-  padding-right: 20px;
+#filter-title {
+
 }
 
-#list-title:hover {
-  background-color: #000;
-  cursor: pointer;
+#filter-options {
+  margin-left: 0.5em;
+  height: 3em;
+  color: #302F2F;
+  font-size: 9pt;
+  border-radius: 0.3em;
+  box-shadow: 1px 1px 2px #7F7E7E;
+  background-color: #D7E6FA;
 }
 
-#list-title:hover #drop-list {
-  display: block;
+#filter-options:hover {
+  background-color: #A5C4EB;
 }
 
-.list-selection {
-  padding-right: 20px;
-  text-align: left;
-}
-
-.list-selection:hover {
-  background-color: #000;
-  cursor: pointer;
-}
-
-.show-all-button {
-  color: #blue;
-  font-size: 15px;
-}
-
-.show-all-button:hover {
-  background-color: #000;
-  cursor: pointer;
+#filter-options:focus {
+  outline-color: #FFA348;
 }
 
 #main-map {
   position: absolute;
-  top: 3em;
+  top: 4em;
   width: 100%;
-  height: 90%;
+  height: 85%;
   min-height: 200px;
 }
 
