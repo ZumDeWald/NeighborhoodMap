@@ -2,27 +2,23 @@ import React from 'react';
 
 function FilterList(props) {
 
-  // const generateList = (locations) => {
-  //   locations.forEach((location) => {
-  //     return <span id="location.title">location.title</span>
-  //   })
-  // }
 
   return(
     //Empty div to be populated by props passed down
-  <div id="filter-list">
-    <div id="drop-list" className="list-style">
+  <div id="filter-bar">
+    <div id="list-title">Filter Selections</div>
+    <ul id="drop-list">
       {props.locations.map((location, index) => (
-        <span key={index + 100}
+        <li key={index + 100}
               id="index"
-              className="list-title"
+              className="list-selection"
               onClick={() => props.onFilterMarker(location, index)}
-              >{location.title}</span>
+              >{location.title}</li>
       ))}
-      <span className="list-title"
-            onClick={() => props.showAllLocations()}>
-        See All
-      </span>
+    </ul>
+    <div className="show-all-button"
+          onClick={() => props.showAllLocations()}>
+      See All
     </div>
   </div>
   )
