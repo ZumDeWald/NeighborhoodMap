@@ -17,7 +17,7 @@ function FilterList(props) {
         <span key={index + 100}
               id="location.title"
               className="list-title"
-              onClick={() => props.onFilterLocations(location.title)}
+              onClick={() => props.onFilterLocations(location)}
               >{location.title}</span>
       ))}
     </div>
