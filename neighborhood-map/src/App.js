@@ -27,8 +27,7 @@ class App extends Component {
     })
   }
 
-
-  filterMarker = (point, index) => {
+  filterMarker = (index) => {
     this.setMapOnAll(null);
     this.markers[index].setMap(window.mainMap);
     window.mainMap.panTo(this.markers[index].position);
@@ -58,10 +57,10 @@ class App extends Component {
       });
       //Extend boundry of map to incorporate each marker
       this.bounds.extend(marker.position);
+      this.markers.push(marker);
       marker.addListener('click', () => {
         this.createInfoWindow(marker, map);
       });
-      this.markers.push(marker);
     });
     //Fit map to extended bounds
     map.fitBounds(this.bounds);
