@@ -7,9 +7,10 @@ class InfoWindow extends Component {
     if (pass) {
       ReactDOM.render(
         <div className="info-window">
-          <div>{this.props.loc.title}</div>
-          <div>{e.response.venue.location.address}</div>
-          <div>{e.response.venue.tips.groups[0].items[0].text}</div>
+          <div><strong>{this.props.loc.title}</strong></div>
+          <div><em>{e.response.venue.location.address}</em></div>
+          <hr />
+          <div>&nbsp;{e.response.venue.tips.groups[0].items[0].text}</div>
         </div>,
         document.getElementById(`${this.props.loc.title}`)
       )
@@ -27,7 +28,6 @@ class InfoWindow extends Component {
     .then((response) => {
         if (response) {
           this.injectInfo(response, true);
-          console.log(response);
         }
     })
     .catch((error) => {
