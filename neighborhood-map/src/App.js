@@ -74,7 +74,7 @@ class App extends Component {
 
   createInfoWindow(e, map) {
     //save title and ID to pass to InfoWindow component
-    let currentTitle = e.title;
+    let currentLoc = e;
     let currentID = e.id;
     //create InfoWindow instance
     const infoWindow = new window.google.maps.InfoWindow({
@@ -84,7 +84,7 @@ class App extends Component {
     //add listener to poulate infoWindow on click
     infoWindow.addListener('domready', e => {
       ReactDOM.render(<InfoWindow
-        title={currentTitle}
+        loc={currentLoc}
       />, document.getElementById(`${currentID}`))
     })
     //open infoWindow on map
