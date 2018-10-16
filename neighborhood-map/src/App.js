@@ -11,15 +11,20 @@ class App extends Component {
   state = {
     locations: [
       {title: `Blueprint`,
-        location:{lat: 38.6556835, lng: -90.3027671}},
+        location:{lat: 38.6556835, lng: -90.3027671},
+        foursquareID: `5224911e11d21d67f10a97d0`},
       {title: `Original Kaldi's`,
-      location:{lat: 38.6386208, lng: -90.3097823}},
+      location:{lat: 38.6386208, lng: -90.3097823},
+      foursquareID: `4acbc3faf964a520f9c520e3`},
       {title: `Hartford`,
-        location:{lat: 38.6027692, lng: -90.2545727}},
+        location:{lat: 38.6027692, lng: -90.2545727},
+        foursquareID: `4ae473a3f964a520a99a21e3`},
       {title: `Mud House`,
-        location:{lat: 38.59302865, lng: -90.22218699999999}},
+        location:{lat: 38.59302865, lng: -90.22218699999999},
+        foursquareID: `4acbc3faf964a520d7c520e3`},
       {title: `Sump`,
-        location:{lat: 38.5877544, lng: -90.2283778}}
+        location:{lat: 38.5877544, lng: -90.2283778},
+        foursquareID: `4ef9f1ff93ad7cf2ec969baa`}
     ],
   }
 
