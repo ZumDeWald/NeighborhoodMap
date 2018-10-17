@@ -104,20 +104,26 @@ class App extends Component {
 
     return (
       <div id="container">
-        <FilterList
-          locations={this.state.locations}
-          onFilterMarker={this.filterMarker}
-          showAllLocations={this.showAllLocations}
-         />
-        <Map
-          id='main-map'
-          options={{
-            center: { lat:31.7053996 ,lng:35.1936877 },
-            zoom: 20
-          }}
-          onMapLoad={ this.mapLoad }
-        />
-        <Footer />
+        <section id="grid-top">
+          <FilterList
+            locations={this.state.locations}
+            onFilterMarker={this.filterMarker}
+            showAllLocations={this.showAllLocations}
+           />
+        </section>
+        <section id="grid-main">
+          <Map
+            id='main-map'
+            options={{
+              center: { lat:31.7053996 ,lng:35.1936877 },
+              zoom: 20
+            }}
+            onMapLoad={ this.mapLoad }
+          />
+        </section>
+        <section id="grid-bottom">
+          <Footer />
+        </section>
       </div>
     );
   }

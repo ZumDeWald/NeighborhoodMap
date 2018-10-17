@@ -1,10 +1,69 @@
 
-#container {
-  display: flex;
-  flex-flow: column wrap;
-  align-items: center;
-  justify-content: center;
+/* General Style Applications  */
+
+body {
   width: 100%;
+  margin: 0;
+  font-family: sans-serif, arial;
+}
+
+/* Oversizing catch-all */
+
+img,
+embed,
+object,
+video {
+  max-width: 100%;
+}
+
+/* Remove underline from links */
+
+a:link {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+/* Main page style */
+
+#container {
+  display: grid;
+  grid-template-rows: [first-line] 25% [second-line] 70% [third-line] 10% [last-line];
+  grid-template-columns: 100%;
+  grid-template-areas:
+    "top"
+    "main"
+    "footer";
+  place-items: stretch;
+  width: 100%;
+  height: auto;
+}
+
+#grid-top {
+  grid-area: top | 1 / first-line / 1 / second-line;
+}
+
+#grid-main {
+  grid-area: main | 1 / second-line / 1 / third-line;
+}
+
+#grid-bottom {
+  grid-area: bottom main | 1 / third-line / 1 / last-line;
 }
 
 #filter-bar {
@@ -13,17 +72,19 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 13vw;
   border-bottom: solid 0.2em #302F2F;
   box-shadow: 1px 1px 7px #7B7A7A;
   z-index: 1;
 }
 
 #page-title {
-  position: relative;
-  top: 0;
-  font-size: 10.5vw;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  font-size: 4em;
   color: #EFEFEFa5;
+  z-index: 1;
 }
 
 #filter-title {
@@ -57,24 +118,20 @@
 }
 
 #main-map {
-  position: absolute;
-  top: 14.1vw;
+  position: relative;
   width: 100%;
-  height: 85%;
+  height: 100%;
   margin: 0;
   padding: 0;
   min-height: 200px;
 }
 
 #footer {
-  position: fixed;
-  bottom: 0;
-  height: 2.2em;
+  height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
   text-align: center;
-  list-style: none;
 }
 
 .footer-text {
@@ -92,7 +149,7 @@
 
 
   /* Media Query to set CSS breakpoints */
-@media only screen and (min-width: 600px) {
+/* @media only screen and (min-width: 600px) {
 
 #filter-title {
   left: 25vw;
@@ -155,4 +212,4 @@
   height: 2.3em;
 }
 
-}
+} */
