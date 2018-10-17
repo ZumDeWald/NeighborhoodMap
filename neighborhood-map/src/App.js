@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+
 import FilterList from './FilterList';
 import Map from './Map';
 import InfoWindow from './InfoWindow';
+import Footer from './Footer';
 
 import './App.css';
 
@@ -101,7 +103,7 @@ class App extends Component {
   render() {
 
     return (
-      <div id="map-container">
+      <div id="container">
         <FilterList
           locations={this.state.locations}
           onFilterMarker={this.filterMarker}
@@ -115,6 +117,7 @@ class App extends Component {
           }}
           onMapLoad={ this.mapLoad }
         />
+        <Footer />
       </div>
     );
   }

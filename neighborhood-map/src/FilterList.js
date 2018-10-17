@@ -5,7 +5,7 @@ function FilterList(props) {
   return(
   <div id="filter-bar">
     <h1 id="page-title">COFFEE.IN.THE.LOU</h1>
-    <div id="filter-title">Filter:</div>
+    <div id="filter-title"><strong>Filter:</strong></div>
     <select id="filter-options"
             onChange={
               (e) => {
