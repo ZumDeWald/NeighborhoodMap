@@ -2,6 +2,8 @@ import React from 'react';
 
 function FilterList(props) {
 
+    const { locations } = props;
+
   return(
   <div id="filter-bar">
     <h1 id="page-title">COFFEE.IN.THE.LOU</h1>
@@ -20,7 +22,7 @@ function FilterList(props) {
               className="filter-option"
               >See All Locations</option>
     {/* Loop over locations and add listing for each */}
-      {props.locations.map((location, index) => (
+      {locations.map((location, index) => (
       <option key={index}
               value={index}
               className="filter-option"
