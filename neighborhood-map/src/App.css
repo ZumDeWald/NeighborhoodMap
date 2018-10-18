@@ -196,15 +196,17 @@ a:active {
 #list {
   display: flex;
   flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-around;
   height: 100%;
   width: 100%;
   padding: 0;
   margin: 0;
   list-style: none;
+  text-align: center;
 }
 
 .list-item {
-  margin-left: 2em;
   font-size: 10pt;
   color: #000;
 }
@@ -234,8 +236,19 @@ a:active {
   margin-left: 2em;
 }
 
+.list-item {
+  font-size: 12pt;
+}
+
 .footer-text {
   font-size: 15pt;
 }
 
 }
+
+
+
+/*
+  We are the music makers,
+    We are the dreamers of dreams.
+ */
