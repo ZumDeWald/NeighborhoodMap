@@ -121,7 +121,7 @@ class App extends Component {
             onMapLoad={ this.mapLoad }
           />
         </section>
-        <section id="grid-bottom">
+        <section id="grid-footer">
           <Footer />
         </section>
       </div>

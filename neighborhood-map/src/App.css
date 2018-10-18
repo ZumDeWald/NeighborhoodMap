@@ -38,32 +38,43 @@ a:active {
   color: inherit;
 }
 
+#root {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
 
 /* Main page style */
 
 #container {
   display: grid;
-  grid-template-rows: [first-line] 25% [second-line] 70% [third-line] 10% [last-line];
-  grid-template-columns: 100%;
+  grid-template-columns: 1fr;
+  grid-template-rows: 6% 89% 5%;
   grid-template-areas:
     "top"
     "main"
     "footer";
-  place-items: stretch;
+  width: 100%;
+  height: 100%;
+}
+
+#grid-top {
+  grid-area: top;
   width: 100%;
   height: auto;
 }
 
-#grid-top {
-  grid-area: top | 1 / first-line / 1 / second-line;
-}
-
 #grid-main {
-  grid-area: main | 1 / second-line / 1 / third-line;
+  grid-area: main;
+  width: 100%;
+  height: auto;
 }
 
-#grid-bottom {
-  grid-area: bottom main | 1 / third-line / 1 / last-line;
+#grid-footer {
+  grid-area: footer;
+  width: 100%;
+  height: auto;
 }
 
 #filter-bar {
@@ -72,34 +83,33 @@ a:active {
   align-items: center;
   justify-content: center;
   width: 100%;
+  height: auto;
+  padding: 0.5em 0 0.5em 0;
   border-bottom: solid 0.2em #302F2F;
   box-shadow: 1px 1px 7px #7B7A7A;
   z-index: 1;
 }
 
 #page-title {
+  position: absolute;
   width: 100%;
   height: auto;
+  text-align: center;
   margin: 0;
   padding: 0;
-  font-size: 4em;
+  font-size: 24pt;
   color: #EFEFEFa5;
-  z-index: 1;
 }
 
 #filter-title {
-  position: absolute;
-  left: 20vw;
-  font-size: 16pt;
+  font-size: 15pt;
   text-shadow: 1px 1px 2px #7F7E7Ea5;
   z-index: 1;
 }
 
 #filter-options {
-  position: absolute;
-  left: 38vw;
-  padding-left: 0.2em;
-  height: 2.5em;
+  height: 1.8em;
+  margin-left: 0.5em;
   color: #302F2F;
   font-size: 9pt;
   border-radius: 0.3em;
@@ -118,19 +128,18 @@ a:active {
 }
 
 #main-map {
-  position: relative;
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
-  min-height: 200px;
+  min-height: 300px;
 }
 
 #footer {
   height: 100%;
   width: 100%;
+  padding-top: 0.5em;
   margin: 0;
-  padding: 0;
   text-align: center;
 }
 
@@ -149,16 +158,24 @@ a:active {
 
 
   /* Media Query to set CSS breakpoints */
-/* @media only screen and (min-width: 600px) {
+@media only screen and (min-width: 600px) {
+
+#container {
+  grid-template-rows: 5.5% 87.5% 5%;
+}
+
+#page-title {
+  font-size: 3rem;
+  letter-spacing: 0.5rem;
+}
 
 #filter-title {
-  left: 25vw;
   font-size: 25pt;
 }
 
 #filter-options {
-  left: 42vw;
   font-size: 10pt;
+  margin-left: 1.2em;
 }
 
 .info-window {
@@ -176,40 +193,24 @@ a:active {
 
 @media only screen and (min-width: 800px) {
 
-#filter-bar {
-  height: 10vw;
-}
-
-#filter-title {
-  left: 32vw;
+#page-title {
+  font-size: 4rem;
+  letter-spacing: 0.7rem;
 }
 
 #filter-options {
-  left: 46vw;
+  font-size: 10pt;
+  margin-left: 2em;
 }
 
-#main-map {
-  top: 10vw;
-}
-
-#footer {
-  height: 3em;
+.footer-text {
+  font-size: 15pt;
 }
 
 }
 
 @media only screen and (min-width: 1100px) {
 
-#filter-bar {
-  height: 8vw;
-}
 
-#main-map {
-  top: 8vw;
-}
 
-#footer {
-  height: 2.3em;
 }
-
-} */
