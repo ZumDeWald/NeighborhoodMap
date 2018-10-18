@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 import FilterList from './FilterList';
+import List from './List';
 import Map from './Map';
 import InfoWindow from './InfoWindow';
 import Footer from './Footer';
@@ -28,6 +29,24 @@ class App extends Component {
         location:{lat: 38.5877544, lng: -90.2283778},
         fsID: `4ef9f1ff93ad7cf2ec969baa`}
     ],
+
+    showLocations: [
+      {title: `Blueprint`,
+        location:{lat: 38.6556835, lng: -90.3027671},
+        fsID: `5224911e11d21d67f10a97d0`},
+      {title: `Original Kaldi's`,
+        location:{lat: 38.6386208, lng: -90.3097823},
+        fsID: `4acbc3faf964a520f9c520e3`},
+      {title: `Hartford`,
+        location:{lat: 38.6027692, lng: -90.2545727},
+        fsID: `4ae473a3f964a520a99a21e3`},
+      {title: `Mud House`,
+        location:{lat: 38.59302865, lng: -90.22218699999999},
+        fsID: `4acbc3faf964a520d7c520e3`},
+      {title: `Sump`,
+        location:{lat: 38.5877544, lng: -90.2283778},
+        fsID: `4ef9f1ff93ad7cf2ec969baa`}
+    ]
   }
 
   bounds = null;
@@ -43,11 +62,16 @@ class App extends Component {
     this.setMapOnAll(null);
     this.markers[index].setMap(window.mainMap);
     window.mainMap.panTo(this.markers[index].position);
+    //Set state for List
+    this.setState((state) => ({
+      showLocations: state.locations.filter((l) => l.title === this.markers[index].title)
+    }));
   }
 
   showAllLocations = () => {
     this.setMapOnAll(window.mainMap);
     window.mainMap.fitBounds(this.bounds);
+    this.setState({ showLocations: this.state.locations })
   }
 
     //On creating a map instance, add markers/infoWindows
@@ -111,7 +135,12 @@ class App extends Component {
             showAllLocations={this.showAllLocations}
            />
         </section>
-        <section id="grid-main">
+        <section id="grid-list">
+          <List
+            locations={this.state.showLocations}
+          />
+        </section>
+        <section id="grid-map">
           <Map
             id='main-map'
             options={{
