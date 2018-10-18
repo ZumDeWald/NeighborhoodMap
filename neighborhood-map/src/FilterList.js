@@ -2,7 +2,8 @@ import React from 'react';
 
 function FilterList(props) {
 
-    const { locations } = props;
+  //Destructuring for cleaner syntax within JSX
+  const { locations } = props;
 
   return(
   <div id="filter-bar">

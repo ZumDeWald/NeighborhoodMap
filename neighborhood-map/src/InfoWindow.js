@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 class InfoWindow extends Component {
 
+  //Create InfoWindow elements and "inject" them into the div created in the return statement
   injectInfo(e, pass) {
     if (pass) {
       ReactDOM.render(
@@ -15,6 +16,7 @@ class InfoWindow extends Component {
         document.getElementById(`${this.props.loc.title}`)
       )
     } else {
+      //Load error message if Foursquare API call fails
       ReactDOM.render(
         <div className="info-window-display">Error {e.error}</div>,
         document.getElementById(`${this.props.loc.title}`)
@@ -22,6 +24,7 @@ class InfoWindow extends Component {
     }
   }
 
+  //Foursquare API call
   componentDidMount() {
     fetch(`https://api.foursquare.com/v2/venues/${this.props.loc.id}?client_id=BITALC3HSA4PLMTBLQXFRKDYX1Y0SCCWFBMWZC2SW2CTKJFW&client_secret=ESBUR3GBTUWVOYGUWQ4BGET0A3DGI0VYQTWCS2H1RU5CPK2W&v=20180601`)
     .then(function(response) {return response.json()})

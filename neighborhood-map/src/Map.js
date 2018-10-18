@@ -3,18 +3,20 @@ import React, { Component } from 'react';
 
 
 class Map extends Component {
+  //Bind "this" keyword within onScriptLoad
   constructor(props) {
     super(props);
     this.onScriptLoad = this.onScriptLoad.bind(this)
   }
 
-  // Once script load store new Google Map instance in const map
+  // Once script loads store new Google Map instance in const map
   onScriptLoad() {
     const map = new window.google.maps.Map(
       document.getElementById(this.props.id),
       this.props.options);
     //set map to window obj to get global access
     window.mainMap = map;
+    //Call method creating map instance from prop passed down
     this.props.onMapLoad(map);
   }
 
@@ -26,7 +28,7 @@ class Map extends Component {
       script.id = 'GoogleAPIScript';
       script.type = 'text/javascript';
       script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAcGzKXNeOcVTjtGJ3mezaCbmfq3MAA3_c&v=3`;
-      //Place our API call script on top of others
+      //Place our API call script on top of other scripts
       let grabFirstScript = document.getElementsByTagName('script')[0];
       grabFirstScript.parentNode.insertBefore(script, grabFirstScript);
       //Event Listener to instantiate map after Async call returns
@@ -34,6 +36,8 @@ class Map extends Component {
         this.onScriptLoad()
       })
     } else {
+      //Call onScriptLoad if google instance already exists within App
+      //Reduces redundant API calls if you generate more than one map
       this.onScriptLoad()
     }
   }

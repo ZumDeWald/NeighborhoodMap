@@ -49,15 +49,19 @@ class App extends Component {
     ]
   }
 
+  //Set bounds and markers to be used/filtered by Map
   bounds = null;
   markers=[];
 
+  //Sets map for all markers
   setMapOnAll = (map) => {
     this.markers.forEach((marker) => {
       marker.setMap(map);
     })
   }
 
+  //Filters markers in markers array and in showLocations state
+  //This shows/hides the selected location in List View and Markers on the Map
   filterMarker = (index) => {
     this.setMapOnAll(null);
     this.markers[index].setMap(window.mainMap);
@@ -68,13 +72,14 @@ class App extends Component {
     }));
   }
 
+  //Sets all markers and locations back to being shown in List and Map
   showAllLocations = () => {
     this.setMapOnAll(window.mainMap);
     window.mainMap.fitBounds(this.bounds);
     this.setState({ showLocations: this.state.locations })
   }
 
-    //On creating a map instance, add markers/infoWindows
+    //On creating a map instance, add markers/infoWindows/set bounds
   mapLoad = (map) => {
     //Create bounds instance
     this.bounds = new window.google.maps.LatLngBounds();
@@ -105,7 +110,7 @@ class App extends Component {
 
 
   createInfoWindow(e, map) {
-    //save title and ID to pass to InfoWindow component
+    //save location and ID to pass to InfoWindow component
     let currentLoc = e;
     let currentID = e.id;
     //create InfoWindow instance
@@ -125,19 +130,21 @@ class App extends Component {
 
 
   render() {
+    //Destructuring for cleaner syntax within JSX
+    const { locations, showLocations } = this.state
 
     return (
       <div id="container">
         <section id="grid-top">
           <FilterList
-            locations={this.state.locations}
+            locations={locations}
             onFilterMarker={this.filterMarker}
             showAllLocations={this.showAllLocations}
            />
         </section>
         <section id="grid-list">
           <List
-            locations={this.state.showLocations}
+            locations={showLocations}
           />
         </section>
         <section id="grid-map">
