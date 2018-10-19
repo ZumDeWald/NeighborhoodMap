@@ -101,6 +101,8 @@ class App extends Component {
       this.bounds.extend(marker.position);
       this.markers.push(marker);
       marker.addListener('click', () => {
+        marker.setAnimation(window.google.maps.Animation.BOUNCE);
+        setTimeout(() => {marker.setAnimation(null);}, 2000);
         this.createInfoWindow(marker, map);
       });
     });
