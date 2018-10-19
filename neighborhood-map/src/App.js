@@ -101,6 +101,7 @@ class App extends Component {
       this.bounds.extend(marker.position);
       this.markers.push(marker);
       marker.addListener('click', () => {
+        //Set animation for marker when clicked and timeout after 2 sec
         marker.setAnimation(window.google.maps.Animation.BOUNCE);
         setTimeout(() => {marker.setAnimation(null);}, 2000);
         this.createInfoWindow(marker, map);
@@ -118,8 +119,10 @@ class App extends Component {
     //create InfoWindow instance
     const infoWindow = new window.google.maps.InfoWindow({
       content: `<div id='${currentID}' />`,
-      position: e.position
-    })
+      position: e.position,
+      pixelOffset: new window.google.maps.Size(0, -50)
+    });
+
     //add listener to poulate infoWindow on click
     infoWindow.addListener('domready', e => {
       ReactDOM.render(<InfoWindow
