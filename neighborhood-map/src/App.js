@@ -109,6 +109,10 @@ class App extends Component {
     });
     //Fit map to extended bounds
     map.fitBounds(this.bounds);
+    //Fit map to bounds on resize
+    window.google.maps.event.addDomListener(window, 'resize', () => {
+      map.fitBounds(this.bounds);
+    })
   }
 
 
